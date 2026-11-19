@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de trabajo · Estafas digitales</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #eef3f8; color: #17283b;
+    font: 1rem/1.55 system-ui, sans-serif;
+  }
+  main { width: min(900px, 94%); margin: 2rem auto; }
+  header { background: #132c46; color: white; padding: 1.5rem; border-radius: 14px; }
+  header p, header h1 { margin: .2rem 0; }
+  header p:first-child { color: #a6e4df; }
+  nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+  button {
+    font: inherit; font-weight: 650; cursor: pointer; padding: .6rem .9rem;
+    border: 1px solid #647b91; border-radius: 8px; background: white; color: #132c46;
+  }
+  button[aria-selected="true"], button[type="submit"] {
+    background: #075b57; border-color: #075b57; color: white;
+  }
+  :focus-visible { outline: 3px solid #a44600; outline-offset: 3px; }
+  section {
+    background: white; padding: clamp(1rem, 4vw, 2rem);
+    border: 1px solid #c8d5e2; border-radius: 14px;
+  }
+  h2 { margin-top: 0; }
+  h3 { margin-top: 1.8rem; color: #075b57; }
+  .pregunta { margin: 1rem 0; }
+  label { display: block; font-weight: 600; margin-bottom: .35rem; }
+  textarea, input {
+    display: block; width: 100%; padding: .65rem; border: 1px solid #647b91;
+    border-radius: 7px; font: inherit; color: inherit; background: #fbfdff;
+  }
+  textarea { min-height: 6rem; resize: vertical; }
+  input { max-width: 32rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p>Educación financiera y consumo responsable · 4.º de ESO</p>
+    <h1>Ficha de trabajo: estafas en redes sociales</h1>
+    <p>Lee los casos originales y responde en esta ficha. Descarga el PDF antes de cerrar la página.</p>
+  </header>
+
+  <nav id="pestanas" role="tablist" aria-label="Apartados de la ficha"></nav>
+
+  <div id="paneles">
+    <section id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+      <form id="entrega">
+        <label for="nombre">Nombre y apellidos</label>
+        <input id="nombre" autocomplete="name" required maxlength="100">
+        <button type="submit">Descargar respuestas en PDF</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+const casos = [
+   {
+    titulo: "Antes de empezar",
+    grupos: [["", [
+      "Si recibes una petición extraña por mensaje privado de alguien que parece ser un amigo, ¿cómo recomienda el manual comprobar que de verdad te ha escrito esa persona?",
+      "¿Qué es una mula financiera? Explica qué hace con el dinero que recibe en su cuenta y qué le ofrecen a cambio.",
+      "Según el manual, ¿qué es la urgencia artificial (FOMO)? Inventa una frase que podría usar un finfluencer para provocarla y explica qué reacción busca."
+    ]]]
+  },
+ {
+    titulo: "Operación Judas",
+    grupos: [["", [
+      "¿Qué le pidió a Lucía la persona que decía ser Luis y qué excusa utilizó?",
+      "¿Qué indicaba realmente el SMS de Bankuxa? ¿En qué se diferenciaba de lo que decía el primer mensaje?",
+      "¿Qué detalles del intercambio podían hacer que Lucía confiara en el mensaje o actuara con prisa?",
+      "¿Cómo descubrió Lucía lo ocurrido? ¿Qué encontró al revisar los movimientos de su cuenta?",
+      "¿Qué podía haber hecho Lucía antes de compartir el código? ¿Qué acciones le recomendarías al detectar las transferencias?"
+    ]]]
+  },
+  {
+    titulo: "Operación Cosplay",
+    grupos: [["", [
+      "¿Cómo contactó la supuesta agencia con Sonia, qué le ofreció y qué datos le pidió?",
+      "¿Qué aviso recibió Sonia y qué descubrió cuando intentó cambiar su contraseña?",
+      "Reconstruye la secuencia desde el primer contacto hasta la pérdida del saldo de PayPal. ¿Qué pasos aparecen en el caso y cuáles no se pueden confirmar?",
+      "¿Cómo podría haber comprobado Sonia que la oferta procedía de una agencia real sin facilitarle más datos?",
+      "¿Qué medidas le recomendarías para proteger su correo y sus cuentas de pago? ¿Qué debería hacer al detectar el acceso no autorizado?"
+    ]]]
+  },
+  {
+    titulo: "Operación Midas",
+    grupos: [
+      ["Actividad 1 · Técnicas de manipulación y emociones trampa", [
+        "Analizad las viñetas del caso. Indicad, para cada una, la técnica de manipulación utilizada y el impulso o «emoción trampa» que siente Marcos.",
+        "Diseñad un cartel con las técnicas de manipulación, las emociones trampa y las medidas de prevención. Recoged aquí el texto que irá en vuestro cartel."
+      ]],
+      ["Actividad 2 · Análisis de un perfil público", [
+        "Elegid un perfil público y real de un finfluencer que promocione inversión o criptoactivos en TikTok, Instagram o YouTube. Anotad el perfil y la red social.",
+        "Advertencia de riesgo: ¿incluye el perfil una advertencia visible sobre los riesgos de los criptoactivos? Indicad dónde la habéis buscado y qué habéis encontrado.",
+        "Enlaces de afiliación: ¿qué enlaces de registro a exchanges o plataformas de trading aparecen en la descripción del canal? ¿Qué indicios encontráis de que el creador pueda cobrar comisiones por captar usuarios?",
+        "Registros oficiales: buscad el nombre de la plataforma o del creador en el buscador de entidades autorizadas y en el registro de advertencias de la CNMV. Anotad por separado el resultado de cada búsqueda.",
+        "Lenguaje: ¿encontráis garantías de rentabilidad, promesas de «ingresos pasivos», invitaciones a operar sin formación u otras expresiones que puedan influir en quien las lee? Anotad ejemplos."
+      ]]
+    ]
+  }
+];
+
+const $ = id => document.getElementById(id);
+function elemento(tipo, texto) {
+  const nodo = document.createElement(tipo);
+  if (texto !== undefined) nodo.textContent = texto;
+  return nodo;
+}
+
+const campos = [];
+casos.forEach((caso, i) => {
+  const panel = elemento("section");
+  panel.id = `panel-${i}`;
+  panel.setAttribute("role", "tabpanel");
+  panel.setAttribute("aria-labelledby", `tab-${i}`);
+  panel.append(elemento("h2", caso.titulo));
+  let numero = 0;
+  campos[i] = caso.grupos.map(([titulo, preguntas]) => {
+    if (titulo) panel.append(elemento("h3", titulo));
+    return preguntas.map(pregunta => {
+      numero++;
+      const bloque = elemento("div");
+      bloque.className = "pregunta";
+      const enunciado = `${numero}. ${pregunta}`;
+      const etiqueta = elemento("label", enunciado);
+      const respuesta = elemento("textarea");
+      respuesta.id = `respuesta-${i}-${numero}`;
+      etiqueta.htmlFor = respuesta.id;
+      bloque.append(etiqueta, respuesta);
+      panel.append(bloque);
+      return { enunciado, respuesta };
+    });
+  });
+  $("paneles").insertBefore(panel, $("panel-4"));
+});
+
+const titulos = [...casos.map(c => c.titulo), "descarga tu trabajo"];
+const pestanas = titulos.map((titulo, i) => {
+  const boton = elemento("button", titulo);
+  boton.type = "button";
+  boton.id = `tab-${i}`;
+  boton.setAttribute("role", "tab");
+  boton.setAttribute("aria-controls", `panel-${i}`);
+  boton.addEventListener("click", () => activar(i));
+  boton.addEventListener("keydown", e => {
+    let destino;
+    if (e.key === "ArrowRight") destino = (i + 1) % titulos.length;
+    else if (e.key === "ArrowLeft") destino = (i + titulos.length - 1) % titulos.length;
+    else if (e.key === "Home") destino = 0;
+    else if (e.key === "End") destino = titulos.length - 1;
+    else return;
+    e.preventDefault();
+    activar(destino);
+    pestanas[destino].focus();
+  });
+  $("pestanas").append(boton);
+  return boton;
+});
+
+function activar(indice) {
+  pestanas.forEach((boton, i) => {
+    const activa = i === indice;
+    boton.setAttribute("aria-selected", String(activa));
+    boton.tabIndex = activa ? 0 : -1;
+    $(`panel-${i}`).hidden = !activa;
+  });
+}
+activar(0);
+
+// PDF de texto con fuentes estándar y codificación Windows-1252.
+const especiales = "€\u0000‚ƒ„…†‡ˆ‰Š‹Œ\u0000Ž\u0000\u0000‘’“”•–—˜™š›œ\u0000žŸ";
+function literalPDF(texto) {
+  return Array.from(texto.normalize("NFC"), c => {
+    const n = c.codePointAt(0);
+    if (n >= 32 && n <= 126) return /[\\()]/.test(c) ? "\\" + c : c;
+    const especial = especiales.indexOf(c);
+    const byte = n >= 160 && n <= 255 ? n : especial >= 0 ? especial + 128 : 63;
+    return "\\" + byte.toString(8).padStart(3, "0");
+  }).join("");
+}
+
+function generarPDF(nombre) {
+  const paginas = [[]];
+  let y = 790;
+  const lienzo = document.createElement("canvas").getContext("2d");
+  function nuevaPagina() { paginas.push([]); y = 790; }
+  function dividir(texto, tam, negrita) {
+    lienzo.font = `${negrita ? "bold " : ""}${tam}px Arial, sans-serif`;
+    return texto.replace(/\r/g, "").split("\n").flatMap(parrafo => {
+      const lineas = [];
+      let linea = "";
+      for (const palabra of parrafo.trim().split(/\s+/)) {
+        const candidata = linea ? `${linea} ${palabra}` : palabra;
+        if (lienzo.measureText(candidata).width <= 480) {
+          linea = candidata;
+        } else {
+          if (linea) lineas.push(linea);
+          linea = "";
+          for (const c of palabra) {
+            if (lienzo.measureText(linea + c).width > 480) {
+              lineas.push(linea);
+              linea = "";
+            }
+            linea += c;
+          }
+        }
+      }
+      return [...lineas, linea];
+    });
+  }
+
+  function escribir(texto, tam = 11, negrita = false, despues = 5) {
+    for (const linea of dividir(texto, tam, negrita)) {
+      if (y < 56) nuevaPagina();
+      paginas.at(-1).push(
+        `BT /${negrita ? "B" : "R"} ${tam} Tf 1 0 0 1 55 ${y} Tm (${literalPDF(linea)}) Tj ET\n`
+      );
+      y -= tam + 4;
+    }
+    y -= despues;
+  }
+
+  escribir("Ficha de trabajo: estafas digitales", 18, true);
+  escribir(`Nombre y apellidos: ${nombre}`, 12, false, 12);
+  casos.forEach((caso, i) => {
+    if (y < 145) nuevaPagina();
+    escribir(caso.titulo, 15, true, 8);
+    caso.grupos.forEach(([titulo], j) => {
+      if (titulo) {
+        if (y < 125) nuevaPagina();
+        escribir(titulo, 12, true, 7);
+      }
+      campos[i][j].forEach(({ enunciado, respuesta }) => {
+        const alto = dividir(enunciado, 11, true).length * 15;
+        if (y < 72 + alto) nuevaPagina();
+        escribir(enunciado, 11, true, 2);
+        escribir(respuesta.value.trim() || "Sin responder", 11, false, 10);
+      });
+    });
+  });
+
+  const objetos = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    `<< /Type /Pages /Count ${paginas.length} /Kids [${paginas.map((_, i) => `${5 + i * 2} 0 R`).join(" ")}] >>`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"
+  ];
+  paginas.forEach((lineas, i) => {
+    const contenido = lineas.join("") +
+      `BT /R 9 Tf 1 0 0 1 55 30 Tm (Pagina ${i + 1} de ${paginas.length}) Tj ET\n`;
+    objetos.push(
+      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /R 3 0 R /B 4 0 R >> >> /Contents ${6 + i * 2} 0 R >>`,
+      `<< /Length ${contenido.length} >>\nstream\n${contenido}endstream`
+    );
+  });
+
+  // Todas las cadenas del PDF son ASCII: sus longitudes coinciden con los bytes.
+  let pdf = "%PDF-1.4\n";
+  const posiciones = [];
+  objetos.forEach((objeto, i) => {
+    posiciones.push(pdf.length);
+    pdf += `${i + 1} 0 obj\n${objeto}\nendobj\n`;
+  });
+  const inicioXref = pdf.length;
+  pdf += `xref\n0 ${objetos.length + 1}\n0000000000 65535 f \n`;
+  for (const posicion of posiciones) {
+    pdf += `${String(posicion).padStart(10, "0")} 00000 n \n`;
+  }
+  pdf += `trailer\n<< /Size ${objetos.length + 1} /Root 1 0 R >>\nstartxref\n${inicioXref}\n%%EOF\n`;
+  return new Blob([pdf], { type: "application/pdf" });
+}
+
+$("nombre").addEventListener("input", () => $("nombre").setCustomValidity(""));
+$("entrega").addEventListener("submit", e => {
+  e.preventDefault();
+  const nombre = $("nombre").value.trim();
+  if (!nombre) {
+    $("nombre").setCustomValidity("Escribe tu nombre y apellidos.");
+    $("nombre").reportValidity();
+    return;
+  }
+  const url = URL.createObjectURL(generarPDF(nombre));
+  const enlace = elemento("a");
+  enlace.href = url;
+  const sufijo = nombre.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
+  enlace.download = `Ficha-estafas-${sufijo || "entrega"}.pdf`;
+  document.body.append(enlace);
+  enlace.click();
+  enlace.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+});
+</script>
+</body>
+</html>
